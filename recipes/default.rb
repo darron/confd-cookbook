@@ -25,6 +25,7 @@ remote_file node['confd']['tmp'] do
   owner 'root'
   group 'root'
   mode 00755
+  not_if { File.exist?('/usr/local/bin/confd') }
 end
 
 bash 'install confd' do
@@ -36,4 +37,14 @@ bash 'install confd' do
   EOH
   only_if { File.exist?('/tmp/confd') }
   not_if { File.exist?('/usr/local/bin/confd') }
+end
+
+node['confd']['folders'].each do |path|
+  directory "/etc/confd/#{path}" do
+    owner 'root'
+    group 'root'
+    mode '0755'
+    recursive true
+    action :create
+  end
 end

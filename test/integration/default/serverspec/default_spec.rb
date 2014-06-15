@@ -8,4 +8,12 @@ describe 'confd::default' do
     it { should be_file }
   end
 
+  describe file('/etc/confd/conf.d') do
+    it { should be_directory }
+  end
+
+  describe file('/etc/confd/templates') do
+    it { should be_directory }
+  end
+
 end
