@@ -3,7 +3,9 @@ require 'spec_helper'
 
 # Write integration tests with Serverspec - http://serverspec.org/
 describe 'confd::default' do
-  it 'does something' do
-    pending 'Replace this with meaningful tests'
+
+  describe file('/usr/local/bin/confd') do
+    it { should be_file }
   end
+
 end

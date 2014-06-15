@@ -18,4 +18,8 @@
 # limitations under the License.
 #
 
-# Set meaningful node attributes here
+default['confd']['url'] = "https://github.com/kelseyhightower/confd/releases/download/v0.5.0-beta1/confd-0.5.0-beta1-linux-amd64"
+default['confd']['tmp'] = '/tmp/confd'
+default['confd']['destination'] = '/usr/local/bin/confd'
+
+default['confd']['folders'] = %w( conf.d templates )

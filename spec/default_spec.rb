@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'confd::default' do
   let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
-  it 'does something' do
-    pending 'Replace this with meaningful tests'
+  it 'gets the remote confd file' do
+    expect(chef_run).to create_remote_file('/tmp/confd')
   end
 end

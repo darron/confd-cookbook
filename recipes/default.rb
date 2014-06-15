@@ -19,3 +19,21 @@
 #
 
 include_recipe 'chef-sugar::default'
+
+remote_file node['confd']['tmp'] do
+  source node['confd']['url']
+  owner 'root'
+  group 'root'
+  mode 00755
+end
+
+bash 'install confd' do
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
+    mv confd /usr/local/bin
+    chmod 755 /usr/local/bin/confd
+  EOH
+  only_if { File.exist?('/tmp/confd') }
+  not_if { File.exist?('/usr/local/bin/confd') }
+end
